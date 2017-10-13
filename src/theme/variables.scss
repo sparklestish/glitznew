@@ -1,0 +1,49 @@
+$font-path: "../assets/fonts";
+
+@import "ionic.globals";
+
+$colors: (
+  primary:    #ff1b21,
+  secondary:  #f5f7f9,
+  danger:     #f53d3d,
+  success:    #339966,
+  light:      #fff,
+  dark:       #000,
+  gray:       #888580,
+  navy:		  #009688
+);
+@each $color in $colors{
+	$key: nth($color, 1);
+	$value: nth($color, 2);
+	[#{$key}]{color:$value;};
+	[#{$key}-bg]{background-color:$value!important;}
+}
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color;
+    background: rgba($color, $opacity);
+}
+
+$toolbar-background: #fff;
+$tabs-background: #fff;
+$tabs-md-tab-font-size: 11px;
+$tabs-md-tab-opacity: 1;
+$tabs-tab-color-inactive: #000;
+$text-color: #5a5a5a;
+$toolbar-md-button-color: #000;
+$toast-md-background: #f0f0f0;
+$toast-md-title-color: #000;
+$button-md-text-transform: none;
+$alert-md-background-color: #fff;
+$alert-md-message-text-color: #000;
+$list-md-border-color: #f3f3f3;
+
+$variable-item-categories-height: 100px;
+$variable-item-categories-margin: 5px;
+$variable-product-status-detail: 25px;
+
+@import "ionic.theme.default";
+
+@import "ionic.ionicons";
+
+@import "roboto";
+@import "noto-sans";

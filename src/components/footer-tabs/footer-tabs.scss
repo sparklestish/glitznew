@@ -1,0 +1,17 @@
+footer-tabs {
+	ion-row{
+		position:absolute;
+		width:100%;
+		height:100%;
+		top:0;
+		left:0;
+	}
+	ion-col{
+		color:rgba($tabs-tab-color-inactive, $tabs-md-tab-opacity);
+		ion-icon{
+			display:block;
+			font-size:30px;
+		}
+		&.selected *{color:color($colors, primary, base)!important}
+	}
+}

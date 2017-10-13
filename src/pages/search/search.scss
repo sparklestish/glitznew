@@ -1,0 +1,34 @@
+page-search {
+	.search-input{
+		.item-inner{
+			border-bottom:none!important;
+			box-shadow:none!important;
+		}
+	}
+	.button-view .button.disabled{color:#cdcdcd}
+	.filter-list{
+		ion-col{
+			-webkit-flex: 0 0 100%;
+			-ms-flex: 0 0 100%;
+			flex: 0 0 100%;
+			max-width: 100%;	
+			.product-image{
+				width:33%;
+				.sale{
+					top:0;
+					bottom:auto;
+				}
+			}
+			.product-detail{
+				width:66.6667%;
+				padding-left:8px;
+				line-height:20px;
+				.sale{
+					background:#FFF6F5;
+					padding:0 4px;
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+}

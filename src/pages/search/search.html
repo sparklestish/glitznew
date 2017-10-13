@@ -1,0 +1,83 @@
+<ion-header (swipe)="onSwipeContent($event)">
+  <ion-navbar>
+	<ion-item class="search-input" no-padding>
+	  <ion-input placeholder="{{'search.title'|translate}}" clearInput [(ngModel)]="keyword" (keyup.enter)="search()">
+	  </ion-input>
+	</ion-item>
+	<ion-buttons end>
+		<button-cart #cart icon="icon-bag"></button-cart>
+	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<!-- No result -->
+<ion-row center ion-fixed width-100 height-100 *ngIf="!products || products.length <1" (swipe)="onSwipeContent($event)">
+	<div width-100 text-center>{{'search.no_result'|translate}}</div>
+</ion-row>
+<!-- Has result -->
+<div *ngIf="!products || 0 < products.length" (swipe)="onSwipeContent($event)">
+<!-- <ion-row padding-top class="button-view"> -->
+	<!-- <ion-col no-padding> -->
+		<!-- <button ion-button clear class="disable-hover" color="dark" no-margin -->
+		<!-- [ngClass]="{'disabled':!grid}" (click)="grid=true"> -->
+			<!-- <ion-icon name="icon-grid-out"></ion-icon> -->
+		<!-- </button> -->
+		<!-- <button ion-button clear class="disable-hover" color="dark" no-margin -->
+		<!-- [ngClass]="{'disabled':grid}" (click)="grid=false"> -->
+			<!-- <ion-icon name="icon-order"></ion-icon> -->
+		<!-- </button> -->
+	<!-- </ion-col> -->
+<!-- </ion-row> -->
+<!-- List products -->
+<ion-row padding-8 wrap [ngClass]="{'filter-list':!grid}">
+	<ion-col padding-8 relative [attr.width-50]="grid ? true : null" *ngFor="let product of products">
+		<div [navPush]="DetailPage" [navParams]="{id:product.id}">
+			<div relative float-left class="product-image">
+				<img float-left *ngIf="product.modernshop_images[0].modern_square" [src]="product.modernshop_images[0].modern_square" />
+				<img float-left *ngIf="!product.modernshop_images[0].modern_square" src="assets/images/no-image.png" />
+				<div absolute bottom primary-bg product-sale *ngIf="product.sale_price && product.type!='variable' && product.type!='grouped'" class="sale">
+					<span light>{{(product.sale_price/product.regular_price*100)-100|number:'1.0-0'}}%</span>
+				</div>
+				<img absolute icon-sale *ngIf="(product.type=='variable'||product.type=='grouped') && product.on_sale" src="assets/images/icon-sale.png" />
+			</div>
+			<div float-left class="product-detail" width-100>
+				<p [attr.no-margin]="grid ? null : true" float-left>
+					<span *ngIf="product.type!='variable' && product.type!='grouped'">
+						<b dark font-120>{{product.price*1||0|price}}</b>
+						<span *ngIf="product.sale_price" margin-left text-through>{{product.regular_price*1|price}}</span>
+					</span>
+					<span *ngIf="product.type=='variable' || product.type=='grouped'">
+						<b dark font-120 [innerHTML]="product.price_html"></b>
+					</span>
+				</p>
+				<div [hidden]="grid">
+					<div class="rate">
+						<div class="rating" [style.width]="product.average_rating*20+'%'"></div>
+					</div>
+				</div>
+				<span [innerHTML]="product.name"></span>
+				<div *ngIf="0< product.attributes.length" [hidden]="grid">
+					<div *ngFor="let attribute of product.attributes|filter:{variation:true}">
+						<span>{{attribute.name}}: </span>
+						<span dark>{{attribute.options|ArrayJoin:', '}}</span>
+					</div>
+				</div>
+				<div [hidden]="grid" padding-4>
+					<div float-left primary no-wrap class="sale">{{'search.sold'|translate}} {{product.total_sales}}</div>
+				</div>
+			</div>
+		</div>
+		<button ion-button absolute top right clear (click)="changeFavorite(product)"
+		[color]="favorite[product.id] ? 'primary' : 'dark'" [hidden]="grid" class="disable-hover">
+				<ion-icon icon-big name="ios-heart-outline"></ion-icon>
+		</button>
+	</ion-col>
+</ion-row>
+<ion-infinite-scroll (ionInfinite)="load($event)">
+	<ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>	
+</div>
+</ion-content>
+
+<ion-footer (swipe)="onSwipeContent($event)"><ion-toolbar><footer-tabs></footer-tabs></ion-toolbar></ion-footer>

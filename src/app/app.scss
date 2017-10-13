@@ -1,0 +1,198 @@
+html{
+	&.small{font-size:56.25%;}
+	&.normal{font-size:62.5%;}
+	&.large{font-size:68.75%;}
+	&.extra_large{font-size:75%;}
+}
+ion-icon[class*="ion-ios-icon-"], ion-icon[class*="ion-md-icon-"]{font-family:"vspfonts", "Roboto"}
+.alert-message{overflow:auto}
+img{
+	max-width:100%;
+	max-height:100%;
+}
+p{margin:8px 0}
+::placeholder{
+    text-overflow:ellipsis;
+}
+::-webkit-input-placeholder{text-overflow:ellipsis!important;}
+::-moz-placeholder{text-overflow:ellipsis!important;}
+:-moz-placeholder{text-overflow:ellipsis!important;}
+:-ms-input-placeholder{text-overflow:ellipsis!important;}
+
+html[dir="ltr"]{
+	[float-left]{float:left}
+	[float-right]{float:right}
+}
+html[dir="rtl"]{
+	[float-left]{float:right}
+	[float-right]{float:left}
+	button-cart ion-badge{
+		left:auto;
+		right:25px;
+	}
+	[text-right]{text-align:left}
+	[text-left]{text-align:right}
+}
+[relative]{position:relative}
+[absolute]{position:absolute}
+[overflow]{overflow:auto}
+[width-100], [size-full]{width:100%}
+[height-100], [size-full]{height:100%}
+[no-padding-hard]{padding:0!important}
+[no-padding-left]{padding-left:0}
+[padding-4]{padding:4px}
+[padding-4-vertical]{padding:4px 0}
+[padding-8]{padding:8px}
+[margin-auto]{
+	display:block;
+	margin:0 auto
+}
+[border-right]{border-right: 1px solid #f0f0f0}
+[border-bottom]{border-bottom: 1px solid #f0f0f0}
+[border-left]{border-left: 1px solid #f0f0f0}
+[no-border]{border:none}
+[top]{top:0}
+[right]{right:0}
+[bottom]{bottom:0}
+[left]{left:0}
+[text-through]{text-decoration:line-through}
+[font-120]{font-size:120%}
+[font-110]{font-size:110%}
+[font-80]{font-size:80%}
+[bg-full]{background-size:100% 100%}
+[bg-transparent]{background:transparent}
+[icon-big]{font-size:2em}
+[no-wrap]{white-space:nowrap}
+[no-wrap-ellipsis]{
+	white-space:nowrap;
+	display:block;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+.no-data{line-height:28px}
+.rate{
+	display:inline-block;
+	overflow:hidden;
+	width:66px;
+	height:13px;
+	background:url(../assets/images/rate.png) no-repeat 0px -14px;
+}
+.rating{
+	display:block;
+	height:13px;
+	background:url(../assets/images/rate.png) no-repeat;
+}
+.alert-no-title{
+	.alert-head{display:none}
+	.alert-message{padding:24px}
+}
+.alert-forgot{
+	.alert-title{font-size:16px;}
+	.alert-message{
+		font-size:12px;
+		padding-bottom:0;
+		overflow-y:visible;
+	}
+	.alert-input-group{padding-bottom:0;}
+	.alert-button-group{
+		-webkit-justify-content: flex-start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+		padding-bottom:24px;
+		.button-cancel{
+			position:absolute;
+			top:0;
+			right:0;
+			margin:0;
+			.button-inner{
+				&:before{
+					content:"\f2c0";
+					font-family:"Ionicons";
+					font-size:24px;
+					color:color($colors, dark);
+				}
+			}
+		}
+		.button-confirm{
+			background:color($colors, primary);
+			color:color-contrast($colors, primary);
+		}
+	}
+}
+.alert-signout{
+	.alert-button-default{
+		color:color($colors, navy);
+		&.dark{color:#000}
+	}
+}
+.alert-text-size{
+	.alert-button-group{
+		padding:0 24px 24px 24px;
+		.alert-button{
+			overflow:visible;
+			color:#737373;
+			text-transform:none;
+			text-align:left;
+			.button-inner{
+				padding-left:24px;
+				justify-content:flex-start;
+				&:before{
+					content:"\f360";
+					font-family:"Ionicons";
+					position:absolute;
+					left:10px;
+					font-size:20px;
+				}	
+			}
+		}
+	}
+	&.small .alert-button.small .button-inner:before{
+		content:"\f361";
+		color:color($colors, navy);
+	}
+	&.normal .alert-button.normal .button-inner:before{
+		content:"\f361";
+		color:color($colors, navy);
+	}
+	&.large .alert-button.large .button-inner:before{
+		content:"\f361";
+		color:color($colors, navy);
+	}
+	&.extra_large .alert-button.extra_large .button-inner:before{
+		content:"\f361";
+		color:color($colors, navy);
+	}
+}
+.disconnect{
+	bottom:$toolbar-md-height;
+	color:color-contrast($colors, primary);
+}
+[product-border]{
+	border:2px solid #fcfcfc;
+	img{
+		width:100%;
+		height:100%;
+	}
+}
+[product-sale]{
+	padding:0 4px;
+}
+[icon-sale]{
+    top:4px;
+	left:-3px;
+    width:36px!important;
+	height:auto!important;
+}
+[text-underline]{text-decoration:underline;}
+.disable-hover{
+	.button-effect{display:none;}
+}
+.button-clear{
+	&.activated{background:none!important;}
+}
+.select-address{
+	.alert-button-group{
+		.alert-button:first-child{color:color($colors, dark);}
+		.alert-button:last-child{color:color($colors, navy);}
+	}
+}

@@ -1,0 +1,9 @@
+<ion-nav [root]="rootPage"></ion-nav>
+<ion-row absolute width-100 height-100 center *ngIf="!isLoaded" light-bg>
+	<div text-center width-100>
+		<ion-spinner></ion-spinner>
+	</div>
+</ion-row>
+<div absolute padding text-center width-100 primary-bg *ngIf="isLoaded && disconnect" class="disconnect">
+	{{'general.disconnect'|translate}}
+</div>

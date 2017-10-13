@@ -1,0 +1,15 @@
+page-order {
+	.item-order{
+		border-bottom:2px solid #00A3FD;
+		.order-id{margin-bottom:8px;}
+		.order-status{background:#00A3FD;}
+		&.pending{
+			border-bottom-color:color($colors, primary);
+			.order-status{background:color($colors, primary);}
+		}
+		&.cancelled{
+			border-bottom-color:#A09C96;
+			.order-status{background:#A09C96;}
+		}
+	}
+}

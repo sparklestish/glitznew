@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{'order.title'|translate}}</ion-title>
+	<ion-buttons end>
+		<button-cart #cart icon="icon-bag"></button-cart>
+	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding-horizontal>
+<!-- Refresh -->
+<ion-refresher (ionRefresh)="doRefresh($event)">
+	<ion-refresher-content
+		[pullingIcon]="'general.pullingIcon'|translate"
+		[pullingText]="'general.pullToRefresh'|translate"
+		[refreshingSpinner]="'general.refreshingSpinner'|translate"
+		[refreshingText]="'general.refreshing'|translate">
+	</ion-refresher-content>
+</ion-refresher>
+<!-- Empty -->
+<ion-row center *ngIf="!data || (data|ObjectToArray).length < 1" ion-fixed width-100 height-100>
+	<ion-col width-50 offset-25 text-center>
+		<h1><ion-icon name="icon-list-4"></ion-icon></h1>
+		<span>{{'order.empty'|translate}}</span>
+		<button ion-button block (click)="shop()">{{'order.shop'|translate}}</button>
+	</ion-col>
+</ion-row>
+<!-- Has orders -->
+<ion-row *ngFor="let order of data" class="item-order" [ngClass]="order.status" padding-vertical [navPush]="DetailOrderPage" [navParams]="{id:order.id}">
+	<ion-col width-66 no-padding>
+		<div class="order-id"><b dark>{{'order.id'|translate}} - #{{order.id}}</b></div>
+		<div>{{'order.ordered_date'|translate}} {{order.date_created|date:date_format}}</div>
+		<div *ngIf="order.billing">
+			<span>{{'order.ordered_by'|translate}} </span>
+			<span>{{order.billing.first_name}} {{order.billing.last_name}}</span>
+		</div>
+	</ion-col>
+	<ion-col width-33 bottom no-padding>
+		<div text-center class="order-status" light padding-4 text-capitalize>{{order.status}}</div>
+	</ion-col>
+</ion-row>
+<ion-infinite-scroll (ionInfinite)="load($event)" *ngIf="!over">
+	<ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
